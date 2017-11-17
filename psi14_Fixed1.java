@@ -8,7 +8,7 @@ import jade.lang.acl.*;
 
 
 
-public class psi14_Fixed1 extends Agent {
+public class psi14_Fixed0 extends Agent {
   private int id;
 	protected void setup() {
 		DFAgentDescription dfd = new DFAgentDescription();
@@ -40,7 +40,6 @@ public class psi14_Fixed1 extends Agent {
       if (msg!=null){
         if(msg.getContent().startsWith("Id") && msg.getPerformative() == ACLMessage.INFORM){
           id = Integer.parseInt(msg.getContent().substring(3));
-          System.out.println(msg.getContent());
         }
         if(msg.getContent().startsWith("GetCoins") && msg.getPerformative() == ACLMessage.REQUEST){
           ACLMessage reply = msg.createReply();
@@ -55,7 +54,6 @@ public class psi14_Fixed1 extends Agent {
           send(reply);
         }
         if(msg.getContent().startsWith("Result") && msg.getPerformative() == ACLMessage.INFORM){
-          System.out.println(msg.getContent());
         }
       }
       block();

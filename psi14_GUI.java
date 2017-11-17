@@ -5,10 +5,11 @@ import javax.swing.table.*;
 import javax.swing.JCheckBoxMenuItem;
 import jade.core.AID;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 
  class psi14_GUI extends JFrame implements ActionListener, ItemListener{
-    private String[] columnNames = {"Nombre","Id","Ganadas","Perdidas","Parcial","Total"};
+    private String[] columnNames = {"Nombre","Id","Ganadas","Perdidas"};
     private DefaultTableModel model = new DefaultTableModel(columnNames, 10);
     private JTable table = new JTable(model);
     private JTextArea textarea = new JTextArea(10,50);
@@ -79,7 +80,7 @@ import java.util.HashMap;
       ta_panel.add(scroll_ta);
       ta_panel.setBounds(20,350,700,200);
       JPanel text_panel = new JPanel();
-      text_panel.add(new JLabel("Number of rounds to be played "));
+      text_panel.add(new JLabel("Number of rounds played "));
       text_panel.setBounds(600,30,400,20);
       n_rounds_panel = new JPanel();
       n_rounds_label = new JLabel();
@@ -91,7 +92,7 @@ import java.util.HashMap;
       playersleft_panel.setBounds(600,90,400,20);
       n_players_panel = new JPanel();
       n_players_label = new JLabel();
-      n_players_label.setText(String.valueOf(mainAgent.getPlayersSize()));
+      n_players_label.setText(String.valueOf(mainAgent.getOriginalPlayersSize()));
       n_players_panel.add(n_players_label);
       n_players_panel.setBounds(600,120,400,20);
       frame.add(n_players_panel);
@@ -111,6 +112,9 @@ import java.util.HashMap;
       }else if("New".equals(event.getActionCommand())){
         addVerbose("-*-*-*-*-*-*- NEW GAME -*-*-*-*-*-*- \n");
         mainAgent.lookForPlayers();
+        try{
+          TimeUnit.SECONDS.sleep(2);
+        }catch(Exception e){}
         mainAgent.newGame();
       }else if("Stop".equals(event.getActionCommand())){
         addVerbose("-*-*-*-*-*-*- GAME STOPPED -*-*-*-*-*-*- \n");
@@ -151,7 +155,7 @@ import java.util.HashMap;
     }
 
     public void addVerbose(String text){
-      //if(verbose)
+      if(verbose)
       textarea.append(text);
     }
     public void updateTable(HashMap<AID, psi14_Player> players){
@@ -161,7 +165,7 @@ import java.util.HashMap;
       }
       int i =0;
       for (HashMap.Entry<AID, psi14_Player> entry : players.entrySet()) {
-        model.insertRow(i,new String[]{entry.getValue().getNombre(),String.valueOf(entry.getValue().getId()),String.valueOf(entry.getValue().getGanadas()),String.valueOf(entry.getValue().getPerdidas()),String.valueOf(entry.getValue().getParcial()),String.valueOf(entry.getValue().getTotal())});
+        model.insertRow(i,new String[]{entry.getValue().getNombre(),String.valueOf(entry.getValue().getId()),String.valueOf(entry.getValue().getGanadas()),String.valueOf(entry.getValue().getPerdidas())});
         i++;
       }
 
