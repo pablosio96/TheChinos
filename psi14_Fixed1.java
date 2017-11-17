@@ -8,7 +8,7 @@ import jade.lang.acl.*;
 
 
 
-public class psi14_Fixed0 extends Agent {
+public class psi14_Fixed1 extends Agent {
   private int id;
 	protected void setup() {
 		DFAgentDescription dfd = new DFAgentDescription();
