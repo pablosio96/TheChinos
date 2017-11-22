@@ -26,14 +26,8 @@ import java.util.concurrent.TimeUnit;
       this.mainAgent = mainAgent;
 
       JMenuBar oMB = new JMenuBar();
-  		JMenu oMenu = new JMenu("Edit");
-  		JMenuItem oMI = new JMenuItem("Reset players");
-  		oMI.addActionListener(this);
-  		oMenu.add(oMI);
-  		oMB.add(oMenu);
-
-  		oMenu = new JMenu("Run");
-  		oMI = new JMenuItem("New");
+  		JMenu oMenu = new JMenu("Run");
+  		JMenuItem oMI = new JMenuItem("New");
   		oMI.addActionListener(this);
   		oMenu.add(oMI);
   		oMI = new JMenuItem("Stop");
@@ -106,10 +100,7 @@ import java.util.concurrent.TimeUnit;
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void actionPerformed(ActionEvent event){
-      if("Reset players".equals(event.getActionCommand())){
-        addVerbose("-*-*-*-*-*-*- STATICS OF PLAYERS RESETED -*-*-*-*-*-*- \n");
-        mainAgent.resetPlayers();
-      }else if("New".equals(event.getActionCommand())){
+      if("New".equals(event.getActionCommand())){
         addVerbose("-*-*-*-*-*-*- NEW GAME -*-*-*-*-*-*- \n");
         mainAgent.lookForPlayers();
         try{
