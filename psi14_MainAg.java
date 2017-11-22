@@ -116,7 +116,6 @@ public class psi14_MainAg extends Agent{
           myGui.updatePlayers();
           if(n_rounds != 0){
             step2();
-            myGui.addVerbose("NUmero de escondidas: "+hid_coins);
           }
           else{
             removeBehaviour(mb);
@@ -292,7 +291,6 @@ public class psi14_MainAg extends Agent{
         myGui.updateTable(original_players);
         TimeUnit.MILLISECONDS.sleep(30);
       }catch(Exception e){
-        System.out.println("fallo");
       }
 
 

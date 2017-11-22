@@ -159,7 +159,7 @@ import java.util.concurrent.TimeUnit;
       textarea.append(text);
     }
     public void updateTable(HashMap<AID, psi14_Player> players){
-      int rowCount = model.getRowCount();
+      /**int rowCount = model.getRowCount();
       for (int i = rowCount - 1; i >= 0; i--) {
         model.removeRow(i);
       }
@@ -167,7 +167,28 @@ import java.util.concurrent.TimeUnit;
       for (HashMap.Entry<AID, psi14_Player> entry : players.entrySet()) {
         model.insertRow(i,new String[]{entry.getValue().getNombre(),String.valueOf(entry.getValue().getId()),String.valueOf(entry.getValue().getGanadas()),String.valueOf(entry.getValue().getPerdidas())});
         i++;
-      }
+      }*/
+      try {
+  			if (model.getRowCount() == 0) {
+          int i=0;
+  				for (HashMap.Entry<AID, psi14_Player> entry : players.entrySet()) {
+            model.insertRow(i,new String[]{entry.getValue().getNombre(),String.valueOf(entry.getValue().getId()),String.valueOf(entry.getValue().getGanadas()),String.valueOf(entry.getValue().getPerdidas())});
+            i++;
+  				}
+  			} else {
+  				int i=0;
+  				for (HashMap.Entry<AID, psi14_Player> entry : players.entrySet()) {
+  					model.setValueAt(entry.getValue().getNombre(), i, 0);
+  					model.setValueAt(String.valueOf(entry.getValue().getId()), i, 1);
+  					model.setValueAt(String.valueOf(entry.getValue().getGanadas()), i, 2);
+  					model.setValueAt(String.valueOf(entry.getValue().getPerdidas()), i, 3);
+            i++;
+  				}
+  			}
+  		} catch (Exception e) {
+  			e.printStackTrace();
+  			// No players yet!
+  		}
 
     }
 

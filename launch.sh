@@ -1,2 +1,2 @@
 javac -cp jade.jar *.java
-java -cp .:jade.jar jade.Boot -agents "main:psi14_MainAg;Player0:psi14_Fixed0;Player1:psi14_Fixed1;Player2:psi14_Fixed2;Player3:psi14_Fixed3"
+java -cp .:jade.jar jade.Boot -agents "main:psi14_MainAg;FixedO:psi14_Fixed0;Fixed1:psi14_Fixed1;Random:psi14_Random;aa:psi14_Fixed0;bb:psi14_Random;cc:psi14_Random;dd:psi14_Random;ee:psi14_Random"
